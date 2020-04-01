@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body >
+
+<%- include('partials/navbar_guest'); %>
+
+<div class="jumbotron ">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1 m-auto  position-fixed" id="sticky-sidebar">
+               <p>
+                
+
+                <!-- Write any content which is to be fixed here -->
+               </p>
+            </div>
+            
+            <div class="col" id="main">
+
+                <div class="row mt-5">
+                    <div class="col-md-5 m-auto">
+                        <div class="float-right">
+                        <%var path='/community/'+'join/'+community.community_id%>
+                        <a class="btn btn-primary btn-block" href= <%=path%> >
+                            Join Community
+                        </a>         
+                    </div>  
+                    </div>
+                </div>
+
+                <%- include('partials/posts'); %>
+
+                
+                
+            </div>
+            
+            
+           
+        </div>
+    </div>
+ 
+    </div>
+      
+</body>                
+
+</html>

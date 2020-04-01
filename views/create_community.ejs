@@ -1,0 +1,64 @@
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Commuter</title>
+</head>
+
+<%- include('partials/navbar'); %>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="row mt-5">
+        
+        <div class="col-md-4 m-auto">
+          <div class="card card-body">
+            <h1 class="text-center mb-5"><i class="fas fa-sign-in-alt"></i>Create Community</h1>
+
+            <%- include('partials/messages'); %>
+            <form action="/community/create" method="POST">
+               
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      placeholder="Name of the Community"
+                      value="<%= typeof name != 'undefined' ? name : '' %>"
+                      required
+                     
+                    />
+                  </div>
+
+                  <div class="form-group">
+                   
+                    <input type="radio" id="public" name="access" value="public" required>
+                    <label for="public">public</label>
+                    <input type="radio" id="private" name="access" value="private">
+                    <label for="private">private</label>
+                                                  
+                  </div>
+                  
+                  
+              <div class="form-group">
+                <label for="community_id">Community ID</label>
+                <input
+                  type="text"
+                  id="community_id"
+                  name="community_id"
+                  class="form-control"
+                  placeholder="Enter an ID for your community"
+                  value="<%= typeof community_id != 'undefined' ? community_id : '' %>"
+                  required
+                  
+                />
+              </div>
+              
+
+              <button type="submit" class="btn btn-primary btn-block">Create Community</button>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+      </div>

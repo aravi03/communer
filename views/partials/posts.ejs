@@ -1,0 +1,44 @@
+<% function nl2br(str){
+    if(str)
+    return str.replace(/(?:\r\n|\r|\n)/g, ' <br> ');
+    else
+    return
+   }
+%> 
+<% posts.forEach(function (item) { %>
+    <div class="row mt-5">
+        <div class="col-md-5 m-auto">
+
+                <div class="d-flex flex-row bg-dark text-white">
+                    <div class="col">
+                        <%=item.author%>
+                    </div>
+                    <div class="float-right">
+                    <%date= new Date(item.date) 
+                    var dd = String(date.getDate()).padStart(2, '0');
+                    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+                    var yyyy = date.getFullYear();
+                    var today = dd + '/' + mm + '/' + yyyy;%>
+                    <%=today+','%>
+                    <%=date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()%>
+                    </div>
+                </div>
+                <div class="card card-body">
+                    
+                    
+                    <% if(item.files) {%>
+                    <% var path=community.community_id+'_'+item._id+'.png'; %> 
+                    <%= console.log("This is the path "+path)  %> 
+                    <div class="row w-75 mx-auto">
+                        <img src= <%= path %>  class="img-fluid rounded ">
+                    </div>
+                    <br>
+                    <% } %> 
+                    <% var newstory=nl2br(item.story); %> 
+
+                    <%- newstory %>
+                </div>
+            
+        </div>
+    </div>
+<% });  %> 

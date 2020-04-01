@@ -1,0 +1,92 @@
+
+    <head>
+        <link rel="stylesheet" href="./css/style.css">
+        <title>Communer-Register</title>
+    </head>
+    <body>
+        <%- include('partials/navbar_guest'); %>
+    <br>
+    <br>
+        <div class="container-fluid">
+        <div class="row mt-5">
+            
+            <div class="col-md-4 m-auto">
+              <div class="card card-body">
+                <h1 class="text-center mb-5"><i class="fas fa-sign-in-alt"></i>  Register</h1>
+                
+                <%- include('partials/messages'); %>
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          class="form-control"
+                          placeholder="Enter your Full Name"
+                          required
+                          value="<%= typeof name != 'undefined' ? name : '' %>"
+                        />
+                      </div>
+                      
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      placeholder="Enter Email"
+                      required
+                      value="<%= typeof email != 'undefined' ? email : '' %>"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="userid">User ID</label>
+                    <input
+                      type="text"
+                      id="userid"
+                      name="userid"
+                      class="form-control"
+                      placeholder="Enter your User ID"
+                      required
+                      value="<%= typeof userid != 'undefined' ? userid : '' %>"
+                    />
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Enter Password"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input
+                      type="password"
+                      id="password2"
+                      name="password2"
+                      class="form-control"
+                      placeholder="Re-enter your password"
+                      required
+                    />
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </form>
+                <p class="lead mt-4">
+                  No Account? <a href="/login">Login</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          </div>
+    </body>   
+   

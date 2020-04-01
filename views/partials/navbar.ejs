@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="homebar">
+    <a class="navbar-brand" href="#">Communer</a>  
+   
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+ <span class="navbar-toggler-icon"></span>
+</button>
+
+
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-5 ">
+
+                
+
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown">
+                        Communities
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/mycommunities">My Communities</a>
+                        <a class="dropdown-item" href="/searchcommunities">Search Communities</a>
+                        <a class="dropdown-item" href="/community/create">Create Community</a>
+                    </div>
+                </li>
+            
+            <li class="nav-item dropdown mx-2">
+                <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown">
+                    <%=user.name%> 
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="/login/logout">Logout</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown mx-2">
+                <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown">
+                    Help
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Contact Us</a>
+                    <a class="dropdown-item" href="#">About</a>
+                       
+                </div>
+            </li>
+           
+        </ul>
+    </div>
+    
+
+</nav> 

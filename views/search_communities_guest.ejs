@@ -1,0 +1,39 @@
+<%- include('partials/navbar_guest'); %>
+
+
+
+<div class="jumbotron">
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-5 m-auto">
+        
+        <form method="POST">
+            <div class="input-group">
+            <input class="form-control" type="text" id="search_communities" name="search_communities" placeholder="Search for Communities">
+            <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+            </span>
+            </div>
+        </form> 
+        
+        <% if(results) {%> 
+            <div class="row mt-5">
+                <div class="col-md-5 m-auto"> 
+                    <%= results.length+" matching elements found"; %> 
+                </div>
+            </div>
+        <% results.forEach(element => { %>
+            <div class="row mt-5">
+                <div class="col-md-5 m-auto">  
+                    <% var url='/community/'+element.community_id %> 
+                  <a href=<%=url%>>
+                    <%=element.name%>
+                    </a>
+                </div>
+            </div>
+       <% }); %>
+        <% } %> 
+    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Communer</title>
+</head>
+<%- include('partials/navbar'); %>
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <% user.communities.forEach(element => { %>
+            <div class="row mt-5">
+                <div class="col-md-5 m-auto">  
+                    <% var url='/community/'+element %> 
+                  <a href=<%=url%>>
+                    <%=element%>
+                    </a>
+                </div>
+            </div>
+       <% }); %>
+    </div>
+</div>
