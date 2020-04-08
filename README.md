@@ -3,4 +3,5 @@
 
 Key Features:
 While the text part of the post is stored in the database, the image and video files are uploaded to the server using a unique name which is then stored to the database and retrived later when the post is to be viewed.
+ 
  This project uses Node.js and express for backend and MongoDB as the database to store the information.
