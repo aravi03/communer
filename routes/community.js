@@ -113,6 +113,11 @@ router.get('/create',ensureAuthenticated,function(req,res){
                     {   type:Array,
                         required: false
                     },
+                    type:
+                    {   type:Array,
+                        required: false
+
+                    },
                     author:
                     {
                         type:String,

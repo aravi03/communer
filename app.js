@@ -14,7 +14,7 @@ app.listen(50);
 app.use(expressLayouts);
 app.set('view engine','ejs');
 app.set('views','./views');
-app.use(express.static(__dirname+'/public'));
+
 
 //Connect to DB
 mongoose.connect('mongodb://localhost/communer');
@@ -46,6 +46,7 @@ app.use(function(req, res, next) {
   });
   
 app.use('/community',express.static(__dirname+'/uploads'));
+app.use('/abc',express.static(__dirname+'/uploads'));
 app.use(fileUpload());
 
 app.use('/',require('./routes/home'));

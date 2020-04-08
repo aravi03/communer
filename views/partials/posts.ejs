@@ -27,10 +27,25 @@
                     
                     
                     <% if(item.files) {%>
-                    <% var path=community.community_id+'_'+item._id+'.png'; %> 
+                    <% var path=item.files[0]; %> 
+                    <% var type=item.type[0]; %> 
                     <%= console.log("This is the path "+path)  %> 
+                    <%= console.log("This is the type "+type)  %> 
                     <div class="row w-75 mx-auto">
+                        
+                        <% if(item.type[0]==='video/mp4') { %>  
+                            <div class="embed-responsive embed-responsive-16by9">
+                            <video class="embed-responsive-item" width="320" height="400" controls>
+                                <source src=<%= path %> type="video/mp4">
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                              
+                        <% } %> 
+                        <% if(item.type[0]==='image/jpeg'||item.type[0]==='image/png') %>
+                        <% { %>  
                         <img src= <%= path %>  class="img-fluid rounded ">
+                        <% } %>
                     </div>
                     <br>
                     <% } %> 

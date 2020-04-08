@@ -91,7 +91,17 @@ router.post('*',ensureAuthenticated,function(req,res){
                 var file = req.files.upfile,
                   name = file.name,
                   type = file.mimetype;
-                var uploadpath =  './uploads/' +str+'_'+docInserted.ops[0]._id+'.png'   ;
+                  var ext;
+                    if(type=='video/mp4') 
+                    {ext='.mp4';
+                     }
+                    else if(type=='image/png') 
+                    {ext='.png'}
+                    else if(type=='image/jpeg') 
+                    {ext='.jpg';}
+                    
+                var uploadpath =  './uploads/' +str+'_'+docInserted.ops[0]._id+ext;
+                console.log(type);
                 file.mv(uploadpath,function(err){
                   if(err){
                     console.log("File Upload Failed",name,err);
@@ -99,11 +109,22 @@ router.post('*',ensureAuthenticated,function(req,res){
                   }
                   else {
                     console.log("File Uploaded ",name);
+                    
                     collection.update(
                         { '_id':docInserted.ops[0]._id },
                         {
                             $push: {
-                                files: str+'_'+docInserted.ops[0]._id
+                                files: str+'_'+docInserted.ops[0]._id+ext
+                                 
+                            }
+                        }
+                    );
+                    collection.update(
+                        { '_id':docInserted.ops[0]._id },
+                        {
+                            $push: {
+                                type: type
+                                 
                             }
                         }
                     );
