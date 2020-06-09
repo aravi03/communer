@@ -6,7 +6,7 @@
 <br>
 
 - You can then create your own communities or can search and become a part of existing communities.
-<p><img src="screenshots/searchcom.png" alt="Logo" width="420"><img src="screenshots/createcom.png" alt="Logo" width="420"></p>
+<p><img src="screenshots/searchcom.png" alt="Logo" width="420">&emsp;&emsp;<img src="screenshots/createcom.png" alt="Logo" width="420"></p>
   <br>
   
 - The community's access either public or private. In a public community, the posts in the community will be public whereas in private communities, only the members of the community can view the posts.
