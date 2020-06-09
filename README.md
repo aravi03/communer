@@ -5,7 +5,7 @@
    
   Communer is a full fledged community based social networking web app. 
   You can become a member of the platform by registering. Once you register you will be able to login to your account. 
- <img src="screenshots/register.png" alt="Logo" height="300" width="auto"><img src="screenshots/login.png" alt="Logo" height="300" width="auto">
+ <img src="screenshots/register.png" alt="Logo" width="300"><img src="screenshots/login.png" alt="Logo" width="300">
     You can then create your own communities or can search and become a part of existing communities. 
     <img src="screenshots/searchcom.png" alt="Logo" height="300" width="auto"><img src="screenshots/createcom.png" alt="Logo" height="300" width="auto">
     
