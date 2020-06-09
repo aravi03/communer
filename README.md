@@ -10,7 +10,7 @@
   <br>
   
  <p>The community's access either public or private. In a public community, the posts in the community will be public whereas in private communities, only the members of the community can view the posts.</p>
-<p align="center"><img src="screenshots/pvtcom.png" alt="Logo" height="300" width="auto"></p>
+<p><img src="screenshots/pvtcom.png" alt="Logo" height="300" width="auto"></p>
 <br>
 
  <p>Once you become a part of the community, you will be able to add post to the communities which can be text, image or a video. </p>
@@ -19,6 +19,16 @@
 
 <p>There is also a newsfeed section where users can see the posts from all their communities.</p>
 <p ><img src="screenshots/home.png" alt="Logo" height="300" width="auto"></p>
+
+<p>Once a part of a community, the user can chat with the members of the community in real time.<p>
+<p ><img src="screenshots/chat.png" alt="Logo" height="300" width="auto"></p>
+
+<p>The navbar has notifications where users can get notifications and links to mycommunities, logout and help.</p>
+<p ><img src="screenshots/notif2.png" alt="Logo" height="300" width="auto"></p>
+<p ><img src="screenshots/mycom.png" alt="Logo" height="300" width="auto"></p>
+
+ 
+
 
 Key Features:
 -------------
