@@ -7,7 +7,7 @@
   You can become a member of the platform by registering. Once you register you will be able to login to your account. 
  </p>
  
- <img src="screenshots/register.png" alt="Logo" width="500"><img src="screenshots/login.png" alt="Logo" width="500">
+ <img src="screenshots/register.png" alt="Logo" width="900"><img src="screenshots/login.png" alt="Logo" width="900">
  
    You can then create your own communities or can search and become a part of existing communities. 
     <img src="screenshots/searchcom.png" alt="Logo" height="300" width="auto"><img src="screenshots/createcom.png" alt="Logo" height="300" width="auto">
