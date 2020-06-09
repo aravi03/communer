@@ -8,17 +8,24 @@
  </p>
  
  <img src="screenshots/register.png" alt="Logo" width="420"><img src="screenshots/login.png" alt="Logo" width="420">
- 
+ <p>
    You can then create your own communities or can search and become a part of existing communities. 
-    <img src="screenshots/searchcom.png" alt="Logo" height="300" width="auto"><img src="screenshots/createcom.png" alt="Logo" height="300" width="auto">
+ </p>
+    <img src="screenshots/searchcom.png" alt="Logo" width="420"><img src="screenshots/createcom.png" alt="Logo" width="420">
     
+    <p>
    The community's access either public or private. In a public community, the posts in the community will be public whereas in private communities, only the members of the community can view the posts. 
-      <img src="screenshots/pvtcom.png" alt="Logo" height="300" width="auto">
-   
+   </p>
+   <p align="center">
+      <img src="screenshots/pvtcom.png" alt="Logo" height="500" width="auto"> 
+   </p>
+   <p>
    Once you become a part of the community, you will be able to add post to the communities which can be text, image or a video. 
+     </p>
      <img src="screenshots/post.png" alt="Logo" height="300" width="auto">
-        
+    <p>    
    There is also a newsfeed section where users can see the posts from all their communities.
+ </p>
      <img src="screenshots/home.png" alt="Logo" height="300" width="auto">
 
 Key Features:
