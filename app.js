@@ -76,7 +76,9 @@ app.use('/community',require('./routes/community'));
 // app.use('/community/user',require('./routes/community_post/user'));
 // app.use('/community/author',require('./routes/community_post/author'));
 app.use('/community',require('./routes/community_post'));
-
+app.get('*',function(req,res){
+  res.sendStatus(404);
+})
 
 const PORT = process.env.PORT || 50;
 

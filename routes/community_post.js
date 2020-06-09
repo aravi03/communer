@@ -2,7 +2,7 @@ const express=require('express');
 const router=express.Router();
 const passport = require('passport');
 const { ensureAuthenticated } = require('../config/auth');
-const { communityURL } = require('../config/ensureURL');
+const { communityURL,postURL } = require('../config/ensureURL');
 const app=express();
 var ObjectId = require('mongodb').ObjectId; 
 
@@ -97,7 +97,7 @@ router.get('/communer',function(req,res){
 
 router.get('/:comid',communityURL,view_community);
 
-router.get('/:comid/post/:postid',communityURL,ensureAuthenticated,function(req,res){
+router.get('/:comid/post/:postid',postURL,ensureAuthenticated,function(req,res){
     var comid=req.params.comid;
     var postid=req.params.postid;
     if (ObjectId.isValid(postid)) {
