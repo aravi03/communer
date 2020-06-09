@@ -1,4 +1,4 @@
-# communer- A social networking webapp
+# Communer- A social networking webapp
 <p align="center">
 <img src="public/communer.png" alt="Logo" height="300" width="auto">
  </p>
