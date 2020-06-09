@@ -118,9 +118,16 @@ var MongoClient = require('mongodb').MongoClient;
      
       )
     }).then(function(){
+      var newstr="Your request to join "+comm_id+" was accepted"
       return collection.update(
         {'userid': userid}, 
-        { $push: { "notifs" : {description: "Your request to join "+comm_id+" community was accepted"}} }
+        { $push: {notifs: {
+                               
+          description:newstr,
+          date: Date.now()
+         
+         
+      } }}
      
       )
     }).then(function(){

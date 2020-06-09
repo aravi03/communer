@@ -34,6 +34,11 @@ var fn=function(name){
     community_id:{
         type:String,
         required:true
+    } ,
+    
+    postid:{
+        type:String,
+        required:true
     } 
 
  },

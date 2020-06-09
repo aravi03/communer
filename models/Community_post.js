@@ -26,6 +26,16 @@ var fn=function(name){
                         type:String,
                         required:false
                     },
+                    likes:
+                    {
+                        type:Array,
+                        required:false
+                    },
+                    comments:
+                    {
+                        type:Array,
+                        required:false
+                    },
                     
                     date:{
                         type: Date,

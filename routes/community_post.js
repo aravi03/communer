@@ -4,7 +4,7 @@ const passport = require('passport');
 const { ensureAuthenticated } = require('../config/auth');
 const { communityURL } = require('../config/ensureURL');
 const app=express();
-
+var ObjectId = require('mongodb').ObjectId; 
 
 const view_community=function(req,res,next){
 
@@ -93,8 +93,109 @@ router.get('/communer',function(req,res){
 
 
 
-router.get('*',communityURL,view_community);
-router.post('*',ensureAuthenticated,function(req,res){
+
+
+router.get('/:comid',communityURL,view_community);
+
+router.get('/:comid/post/:postid',communityURL,ensureAuthenticated,function(req,res){
+    var comid=req.params.comid;
+    var postid=req.params.postid;
+    if (ObjectId.isValid(postid)) {
+    var MongoClient = require('mongodb').MongoClient;
+    MongoClient.connect('mongodb://localhost:27017').then(function(client)
+    {  var db=client.db('community_posts');
+       var collection=db.collection(comid);
+       var oid=new ObjectId(postid);
+       return collection.findOne({_id:oid})
+    }).then(function(item){
+    console.log("New one ",item.author,item.story);
+    
+    res.render('viewpost',{item:item,user:req.user,community:res.locals.community})
+    })
+    
+}
+else{
+  
+   res.send("not valid");
+}
+    
+    
+    });
+
+
+    router.get('/:comid/like/:postid',communityURL,ensureAuthenticated,function(req,res){
+        var comid=req.params.comid;
+        var postid=req.params.postid;
+        if (ObjectId.isValid(postid)) {
+        var MongoClient = require('mongodb').MongoClient;
+        MongoClient.connect('mongodb://localhost:27017').then(function(client)
+        {  var db=client.db('community_posts');
+           var collection=db.collection(comid);
+           var oid=new ObjectId(postid);
+           return collection.update(
+            { _id:oid },
+            {
+                $push: {
+                    likes: req.user.userid
+                     
+                }
+            }
+        );
+
+        }).then(function(item){
+            var MongoClient = require('mongodb').MongoClient;
+        MongoClient.connect('mongodb://localhost:27017').then(function(client)
+        {  var db=client.db('community_posts');
+           var collection=db.collection(comid);
+           var oid=new ObjectId(postid);
+           return collection.findOne({ _id:oid });
+         }).then(function(item){
+             var author=item.author;
+             console.log("The author notifs is ",author);
+             var MongoClient = require('mongodb').MongoClient;
+             MongoClient.connect('mongodb://localhost:27017').then(function(client)
+             {  var db=client.db('communer');
+                var collection=db.collection('users');
+                var newstr= req.user.userid+" liked your post";
+                return collection.update(
+                    { 'userid':author },
+                    {
+                        $push: {
+                            notifs: {
+                               
+                                description:newstr,
+                                comid:comid,
+                                postid:postid,
+                                date: Date.now()
+                               
+                            }
+                             
+                        }
+                    }
+                );
+              }).then(function(item){
+
+         console.log("Likes ");
+        var red='/community/'+comid+'/post/'+postid;
+        res.redirect(red);
+        })
+    })
+        })
+        
+    }
+    else{
+      
+       res.send("not valid");
+    }
+        
+        
+        });
+
+
+
+
+
+router.post('/:coid',ensureAuthenticated,function(req,res){
     var str='';
     url=req.url;
     for(var i=1;i<url.length;i++)
@@ -116,7 +217,9 @@ router.post('*',ensureAuthenticated,function(req,res){
         collection.insertOne({
             story: story,
             author:author,
-            date: new Date(Date.now())
+            date: new Date(Date.now()),
+            likes:[],
+            comments:[]
         }).then(function(docInserted){
             
             console.log("The passed value is "+story);
@@ -193,7 +296,8 @@ router.post('*',ensureAuthenticated,function(req,res){
                         date: new Date(Date.now()),
                         files: [str+'_'+docInserted.ops[0]._id+ext],
                         type: [type],
-                        community_id:str
+                        community_id:str,
+                        postid:''+docInserted.ops[0]._id
                     })
                 }
                 else{
@@ -201,7 +305,8 @@ router.post('*',ensureAuthenticated,function(req,res){
                         story: story,
                         author:author,
                         date: new Date(Date.now()),
-                        community_id:str
+                        community_id:str,
+                        postid:''+docInserted.ops[0]._id
                     })  
                 }
                 
@@ -221,6 +326,85 @@ router.post('*',ensureAuthenticated,function(req,res){
     });
 
 });
+
+
+
+router.post('/:comid/post/:postid',communityURL,ensureAuthenticated,function(req,res){
+    var comid=req.params.comid;
+    var postid=req.params.postid;
+    const comment=req.body.comment;
+    if (ObjectId.isValid(postid)) {
+    var MongoClient = require('mongodb').MongoClient;
+    MongoClient.connect('mongodb://localhost:27017').then(function(client)
+    {  var db=client.db('community_posts');
+       var collection=db.collection(comid);
+       var oid=new ObjectId(postid);
+       return collection.update(
+        { _id:oid },
+        {
+            $push: {
+                comments:{from:req.user.userid,comment:comment,date:Date.now()}
+                 
+            }
+        }
+    );
+
+
+
+
+    }).then(function(item){
+        var MongoClient = require('mongodb').MongoClient;
+        MongoClient.connect('mongodb://localhost:27017').then(function(client)
+        {  var db=client.db('community_posts');
+           var collection=db.collection(comid);
+           var oid=new ObjectId(postid);
+           return collection.findOne({ _id:oid });
+         }).then(function(item){
+             var author=item.author;
+             console.log("The author notifs is ",author);
+             var MongoClient = require('mongodb').MongoClient;
+             MongoClient.connect('mongodb://localhost:27017').then(function(client)
+             {  var db=client.db('communer');
+                var collection=db.collection('users');
+                var newstr= req.user.userid+" commented on your post";
+                return collection.update(
+                    { 'userid':author },
+                    {
+                        $push: {
+                            notifs: {
+                               
+                                description:newstr,
+                                comid:comid,
+                                postid:postid,
+                                date: Date.now()
+                               
+                            }
+                             
+                        }
+                    }
+                );
+              }).then(function(item){
+
+         console.log("Likes ");
+        var red='/community/'+comid+'/post/'+postid;
+        res.redirect(red);
+        })
+    })
+    })
+    
+}
+else{
+  
+   res.send("not valid");
+}
+    
+    
+    });
+
+
+
+
+
 
 module.exports=router;
       

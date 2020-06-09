@@ -93,7 +93,8 @@ router.post('/', (req, res) => {
                       date:Date.now(),
                       files:["communer.png"],
                       type:["image/png"],
-                      community_id:"communer"
+                      community_id:"communer",
+                      postid:"1234"
                   });
                   newHomepost.save().then(user=>{
 

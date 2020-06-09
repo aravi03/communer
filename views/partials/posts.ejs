@@ -53,7 +53,53 @@
 
                     <%- newstory %>
                 </div>
-            
+                <% var likeurl='/community/'+community.community_id+'/like/'+item._id %> 
+
+                <% var url='/community/'+community.community_id+'/post/'+item._id %> 
+                <% var isLiked=false; %> 
+                
+                <%if(item.likes.indexOf(user.userid)!=-1){ %> 
+                    <%  isLiked=true; } %> 
+                
+                
+                <div class="d-flex flex-row bg-dark text-white">
+                    <div class="col"><h5>
+                        <% var url='/community/'+community.community_id+'/post/'+item._id %> 
+                         <% if(!isLiked){ %> 
+                        <a style="color: white;" onMouseOver="this.style.color='#747b81'"
+                        onMouseOut="this.style.color='white'" class="mx-2" href=<%= likeurl %> ><i class="fa fa-thumbs-up"></i></a>
+                        <% } %> 
+                       <% if(isLiked){ %> 
+                        <a style="pointer-events: none;" class="text-secondary mx-2"><i class="fa fa-thumbs-up"></i></a>
+    
+                       <% } %> 
+                        <% if(item.likes){ %> 
+                            <%= item.likes.length %>  likes
+                            <% } %> 
+                            <% if(!item.likes){ %> 
+                                0 likes
+                                 <% } %>
+                                 <a class="mx-5"></a>
+                                 <a class="mx-2"></a>
+                                 <% var url='/community/'+community.community_id+'/post/'+item._id %> 
+                        <a class="ml-5 text-white" href=<%= url %> >View Post</a>       
+                       <div class="float-right">
+                       
+                        <a class="text-white"  href=<%= url %> ><i class="fa fa-comment"></i>
+                        <% if(item.comments){ %> 
+                            <%= item.comments.length %> comments
+                            <% } %>
+                            <% if(!item.comments){ %> 
+                               0 comments
+                                <% } %>
+                            </a>
+                            </div>
+                    </h5>
+                    </div>
+                </div>
+
+
         </div>
     </div>
+    
 <% });  %> 

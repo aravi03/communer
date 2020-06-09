@@ -12,20 +12,28 @@
                 <% if(notifs_list) {%>  
                 <% notifs_list.forEach(function (item) { %> 
                 <div class="row mt-5">
-                    <div class="col-md-6 m-auto">
-                        
-                            <%= item.description %> &emsp;
-                       
+                    <div class="col-8 m-auto">
+                        <div class="row">
+                            <div class="col-4">
+                                
+                           
+                            <%= item.description %> 
+                        </div>
                             <%date= new Date(item.date) 
                             var dd = String(date.getDate()).padStart(2, '0');
                             var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
                             var yyyy = date.getFullYear();
                             var today = dd + '/' + mm + '/' + yyyy;%>
-                            <%=today+','%>
-                            <%=date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()  %>
-                            &emsp;&emsp;
+                            <div class="col-3">
+                                <%=today+','%>
+                                <%=date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()  %>
+                               
+                            </div>
+                            
                         
                         
+                        <div class="col-3">
+
                         
                         <% if(item.userid){ %>  
                             <% var accept='/notif/accept/'+item.userid+'/'+item.community_id %>
@@ -37,13 +45,24 @@
                                 Reject
                             </a>   
                         <% } %> 
+                        <% if(item.comid){ %>
+                            <% var view='/community/'+item.comid+'/post/'+item.postid%>
+                       
+                            <a class="btn btn-success btn-sm" href= <%=view%> >
+                                View
+                            </a> 
+                        <% } %>  
+                    </div>
+                    <div class="col-1">
                         <% if(!item.userid){ %> 
                             <% var clear='/notif/clear/'+item.description.split(' ').join('+')%>
                         <% console.log(clear+" is the path here") %>
                             <a class="btn btn-sm" href= <%=clear%> >
                                 x
                             </a> 
-                        <% } %>      
+                        <% } %>    
+                    </div>
+                    </div>  
                     </div>
                 </div>
             <% });%>

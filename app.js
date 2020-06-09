@@ -55,7 +55,11 @@ app.use(function(req, res, next) {
   });
   
 app.use('/community',express.static(__dirname+'/uploads'));
+app.use('/community/:comid/post/:postid',express.static(__dirname+'/uploads'));
+
 app.use('/community',express.static(__dirname+'/public'));
+app.use('//community/:comid/post/:postid',express.static(__dirname+'/public'));
+
 app.use('/',express.static(__dirname+'/public'));
 app.use('/chat',express.static(__dirname+'/public/js'));
 app.use('/',express.static(__dirname+'/public/js'));

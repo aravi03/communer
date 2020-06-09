@@ -13,7 +13,7 @@ router.get('/create',ensureAuthenticated,function(req,res){
   });
   
 
-  router.get('/join/*',ensureAuthenticated,function(req,res){
+  router.get('/join/:comid',ensureAuthenticated,function(req,res){
     var str='';  
     url=req.url;
     for(var i=6;i<url.length;i++)

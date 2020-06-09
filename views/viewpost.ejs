@@ -1,0 +1,136 @@
+<% function nl2br(str){
+    if(str)
+    return str.replace(/(?:\r\n|\r|\n)/g, ' <br> ');
+    else
+    return
+   }
+%> 
+
+<%- include('partials/navbar'); %>
+<br><br><br>
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+
+            <div class="d-flex flex-row bg-dark text-white">
+                <div class="col">
+                    <%=item.author%>
+                </div>
+                <div class="float-right">
+                <%date= new Date(item.date) 
+                var dd = String(date.getDate()).padStart(2, '0');
+                var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = date.getFullYear();
+                var today = dd + '/' + mm + '/' + yyyy;%>
+                <%=today+','%>
+                <%=date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()  %>&ensp;&ensp;
+                </div>
+            </div>
+            <div class="card card-body">
+                
+                
+                <% if(item.files) {%>
+                <% var path=item.files[0]; %> 
+                <% var type=item.type[0]; %> 
+                <%= console.log("This is the path "+path)  %> 
+                <%= console.log("This is the type "+type)  %> 
+                <div class="row w-75 mx-auto">
+                    
+                    <% if(item.type[0]==='video/mp4') { %>  
+                        <div class="embed-responsive embed-responsive-16by9">
+                        <video class="embed-responsive-item" width="320" height="400" controls>
+                            <source src=<%= path %> type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                          
+                    <% } %> 
+                    <% if(item.type[0]==='image/jpeg'||item.type[0]==='image/png') %>
+                    <% { %>  
+                    <img src= <%= path %>  class="img-fluid rounded ">
+                    <% } %>
+                </div>
+                <br>
+                <% } %> 
+                <% var newstory=nl2br(item.story); %> 
+
+                <%- newstory %>
+            </div>
+            <% var isLiked=false; %> 
+            <%if(item.likes.indexOf(user.userid)!=-1){ %> 
+                <%  isLiked=true; } %> 
+                <% console.log("Value of ",isLiked); %> 
+            <div class="d-flex flex-row bg-dark text-white">
+                <div class="col"><h5>
+                    <% var likeurl='/community/'+community.community_id+'/like/'+item._id %> 
+                    
+                    <% if(!isLiked){ %> 
+                    <a style="color: white;" onMouseOver="this.style.color='#747b81'"
+                    onMouseOut="this.style.color='white'" class="mx-2" href=<%= likeurl %> ><i class="fa fa-thumbs-up"></i></a>
+                    <% } %> 
+                   <% if(isLiked){ %> 
+                    <a style="pointer-events: none;" class="text-secondary mx-2"><i class="fa fa-thumbs-up"></i></a>
+
+                   <% } %> 
+                    <% if(item.likes){ %> 
+                        <%= item.likes.length %>  likes
+                        <% } %> 
+                        <% if(!item.likes){ %> 
+                            0 likes
+                             <% } %>
+                   <div class="float-right">
+                    <a class="text-white"  href=""><i class="fa fa-comment"></i></a>
+                    <% if(item.comments){ %> 
+                        <%= item.comments.length %> comments
+                        <% } %>
+                        <% if(!item.comments){ %> 
+                           0 comments
+                            <% } %>
+                        </div>
+                </h5>
+                </div>
+            </div>
+            
+
+            <div class="row mt-5">
+                <div class="col m-auto">
+                    <form method="POST">
+                        <div class="input-group">
+                        <input class="form-control" type="text" id="comment" name="comment" placeholder="Write a comment...">
+                        <span class="input-group-btn">
+                        <button type="submit" class="btn btn-dark btn-block">Comment</button>
+                        </span>
+                        </div>
+                    </form> 
+                      </div>
+                      </div>
+                      <br><br>
+            <% if(item.comments){%> 
+                <!-- <h4 style="text-decoration: underline;">All comments</h4> -->
+                <% item.comments.forEach(function(item){ %> 
+               
+                <div class="row mt-5">
+                    <div class="col m-auto">
+                
+                            <div class="d-flex flex-row bg-secondary text-white">
+                                <div class="col">
+                                    <%=item.from%>
+                                    <div class="float-right">
+                                        <%date= new Date(item.date) 
+                                        var dd = String(date.getDate()).padStart(2, '0');
+                                        var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+                                        var yyyy = date.getFullYear();
+                                        var today = dd + '/' + mm + '/' + yyyy;%>
+                                        <%=today+','%>
+                                        <%=date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()  %>&ensp;&ensp;
+                                        </div>
+                                </div></div>
+                                <div class="card card-body">
+                                    <%=item.comment%>  
+                                </div>
+                    </div> 
+                </div>
+                
+                <% }) %> 
+            <% } %> 
+    </div>
+</div>

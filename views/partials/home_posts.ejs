@@ -6,6 +6,7 @@
    }
 %> 
 <% posts.forEach(function (item) { %>
+    
     <div class="row mt-5">
         <div class="col-md-5 m-auto">
             <!-- <div class="d-flex flex-row bg- text-white">
@@ -58,6 +59,35 @@
 
                     <%- newstory %>
                 </div>
+               
+
+                <% var url='/community/'+item.community_id+'/post/'+item.postid %> 
+                
+                
+                
+                <div class="d-flex flex-row bg-dark text-white">
+                    <div class="col"><h5>
+                        
+                        
+                        <a class="mx-2 text-white" href=<%= url %> ><i class="fa fa-thumbs-up"></i></a>
+                      
+                    
+                                 <a class="mx-5"></a>
+                                 <a class="mx-2"></a>
+                                
+                        <a class="ml-5 text-white" href=<%= url %> >View Post</a>       
+                       <div class="float-right">
+                       
+                        <a class="text-white"  href=<%= url %> ><i class="fa fa-comment"></i>
+                     
+                            </a>
+                            </div>
+                    </h5>
+                    </div>
+                </div>
+
+
+
             
         </div>
     </div>

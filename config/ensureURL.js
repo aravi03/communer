@@ -1,13 +1,7 @@
 module.exports ={
 
     communityURL: function(req,res,next){
-        var str='';  
-        url=req.url;
-        for(var i=1;i<url.length;i++)
-        {
-            str+=url[i];
-        }
-        
+      var str=req.params.comid;
         console.log("This is the name",str);
         var MongoClient = require('mongodb').MongoClient;
     
