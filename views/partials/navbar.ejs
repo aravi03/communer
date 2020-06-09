@@ -12,20 +12,7 @@
             <ul class="navbar-nav ml-auto mr-5 ">
 
                
-                <li class="nav-item dropdown mx-2">
-                    <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown">
-                        <i class="fa fa-user"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-header"><%=user.name%> </a>
-                        <a class="dropdown-item" href="/mycommunities">My Communities</a>
-                        <a class="dropdown-item" href="/community/create">Create Community</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/help">Help</a>
-                        <a class="dropdown-item" href="/login/logout">Logout</a>
-                    </div>
-                </li>
-
+                
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown">
@@ -54,11 +41,27 @@
                 </li>
 
                 
-                <li class="nav-item">
+                <li class="nav-item mx-2">
                     <a class="nav-link mx-2" href="/chat">
                     <i class="fa fa-comments" style="font-size:25px;"></i>
                     </a>
                 </li>
+
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-header"><%=user.name%> </a>
+                        <a class="dropdown-item" href="/mycommunities">My Communities</a>
+                        <a class="dropdown-item" href="/community/create">Create Community</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/help">Help</a>
+                        <a class="dropdown-item" href="/login/logout">Logout</a>
+                    </div>
+                </li>
+
+
                 <li class="nav-item mx-2">
                     <a class="nav-link mx-3" href="/searchcommunities">
                         <i class="fa fa-search" style="font-size:20px;"></i>
