@@ -7,17 +7,19 @@
     
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-1 m-auto  position-fixed" id="sticky-sidebar">
+            <!-- <div class="col-md-1 m-auto  position-fixed" id="sticky-sidebar">
                <p>
                    Enna yaaralum edhuvum panna mudiyadhu
                </p>
-            </div>
+            </div> -->
             <div class="col" id="main">
                 <div class="row mt-5">
                     <div class="col-md-6 m-auto p-3 bg-dark text-white">
                         
                        <h3 class="d-inline ml-2"><%= community.community_id %> </h3> 
-                        <h6 class="d-inline ml-2">by <%= community.author %> </h6>
+                        <h6 class="d-inline ml-2 mr-5">by <%= community.author %> </h6>
+                        <% var count=community.members.length %> 
+                        <h5 class="d-inline ml-5 mr-2 pt-2"><%= count %> Members</h5>
                         <div class="float-right">
                             <%var path='/community/'+'join/'+community.community_id%>
                             <a id="submitbutton" onclick="document.getElementById('submitbutton').disabled = true;" class="btn btn-light btn-block" href= <%=path%> >

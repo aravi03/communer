@@ -29,13 +29,16 @@ router.get('/create',ensureAuthenticated,function(req,res){
              return collection.findOne({community_id:str}).then(function(community){
                 if(community.access=='private')
                 {
-                    const Notif=require('../models/Notif')(community.author);
-                    const newNotif = new Notif({
+                    var MongoClient = require('mongodb').MongoClient;
+            MongoClient.connect('mongodb://localhost:27017').then(function(client)
+            { var db=client.db('communer_notifs');
+                var collection=db.collection(community.author);  
+                return collection.insertOne({
                     description:"A user wants to join your group",
                     userid:req.user.userid,
                     community_id:str
-                    });
-                     newNotif.save();
+                }) });
+                    
              var db=client.db('communer');
              var collection=db.collection("users");
              collection.update(
