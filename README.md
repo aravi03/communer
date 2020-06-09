@@ -1,4 +1,4 @@
-# communer
+<p align="center"> # communer </p>
 <p align="center">
 <img src="public/communer.png" alt="Logo" height="300" width="auto">
  </p>
