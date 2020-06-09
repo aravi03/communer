@@ -30,7 +30,7 @@
 <br>
  
 - Uers can also like and comment on their favourite post
-<p ><img src="screenshots/likecomment.png" alt="Logo" width="900"></p>
+<p ><img src="screenshots/likecomment.png" alt="Logo" height="300" width="auto"></p>
 <br> 
 
 Tools used:
