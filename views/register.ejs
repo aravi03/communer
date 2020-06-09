@@ -2,6 +2,8 @@
     <head>
         <link rel="stylesheet" href="./css/style.css">
         <title>Communer-Register</title>
+        <link rel="icon" href="/public/favicon.ico">
+
     </head>
     <body>
         <%- include('partials/navbar_guest'); %>
@@ -35,7 +37,7 @@
                       type="email"
                       id="email"
                       name="email"
-                      class="form-control"
+                      class="form-control "
                       placeholder="Enter Email"
                       required
                       value="<%= typeof email != 'undefined' ? email : '' %>"
@@ -79,14 +81,16 @@
                     />
                   </div>
 
-                  <button type="submit" class="btn btn-primary btn-block">Register</button>
+                  <button type="submit" class="btn btn-dark btn-block">Register</button>
                 </form>
                 <p class="lead mt-4">
-                  No Account? <a href="/login">Login</a>
+                  Already have an account? <a href="/login">Login</a>
                 </p>
               </div>
             </div>
           </div>
           </div>
+          <br><br>
+          <%- include('partials/footer'); %>
     </body>   
    

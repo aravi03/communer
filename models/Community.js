@@ -1,4 +1,5 @@
 const mongoose=require('mongoose');
+mongoose.connect('mongodb://localhost/communer');
 const UserSchema=new mongoose.Schema({
     name:
     {   type:String,

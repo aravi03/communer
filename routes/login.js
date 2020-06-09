@@ -12,11 +12,16 @@ router.get('/',forwardAuthenticated,function(req,res){
 });
 
 router.post('/', (req, res, next) => {
-    passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/login',
-      failureFlash: true
-    })(req, res, next);
+  var mongoose=require('mongoose')
+mongoose.connect('mongodb://localhost/communer').then(function(){
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+  })(req, res, next);
+})
+
+   
   });
   
   // Logout

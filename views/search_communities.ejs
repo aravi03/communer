@@ -5,34 +5,38 @@
     <div class="container-fluid">
         <div class="row mt-5">
             <div class="col-md-5 m-auto">
-            
-            <form method="POST">
-                <div class="input-group">
-                <input class="form-control" type="text" id="search_communities" name="search_communities" placeholder="Search for Communities">
-                <span class="input-group-btn">
-                <button type="submit" class="btn btn-primary btn-block">Search</button>
-                </span>
-                </div>
-            </form> 
-            
-            <% if(results) {%> 
-                <div class="row mt-5">
-                    <div class="col-md-5 m-auto"> 
-                        <%= results.length+" matching elements found"; %> 
+        
+                <form method="POST">
+                    <div class="input-group">
+                    <input class="form-control" type="text" id="search_communities" name="search_communities" placeholder="Search for Communities">
+                    <span class="input-group-btn">
+                    <button type="submit" class="btn btn-dark btn-block">Search</button>
+                    </span>
                     </div>
-                </div>
-            <% results.forEach(element => { %>
-                <div class="row mt-5">
-                    <div class="col-md-5 m-auto">  
-                        <% var url='/community/'+element.community_id %> 
-                      <a href=<%=url%>>
-                        <%=element.name%>
-                        </a>
+                </form> 
+                
+                <% if(results) {%> 
+                    <div class="row mt-5">
+                        <div class="col-md-8 m-auto"> 
+                            <h3 class="text-dark">
+                            <%= results.length+" matching elements found"; %> 
+                        </h3>
+                        </div>
                     </div>
-                </div>
-           <% }); %>
-            <% } %> 
-        </div>
+                <% results.forEach(element => { %>
+                    <div class="row mt-5">
+                        <div class="col-md-5 m-auto ">  
+                            <% var url='/community/'+element.community_id %> 
+                            <h4>
+                          <a href=<%=url%> class='text-secondary'>
+                            <%=element.name%>
+                            </a>
+                        </h4>
+                        </div>
+                    </div>
+               <% }); %>
+                <% } %> 
+            </div>
     </div>
     </div>
     </div>

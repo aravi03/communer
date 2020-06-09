@@ -1,25 +1,39 @@
 
 const mongoose=require('mongoose');
 mongoose.connect('mongodb://localhost/community_posts');
-const UserSchema=new mongoose.Schema({
-    story:
-    {   type:String,
-        required: false
-    },
-    files:
-    {   type:Array,
-        required: false
-    },
-    author:
-    {
-        type:String,
-        required:false
-    },
-    date:{
-        type: Date,
-        default: Date.now
-    } 
+var fn=function(name){
+   const UserSchema=new mongoose.Schema({
+                    story:
+                    {   type:String,
+                        required: false
+                    },
+                    files:
+                    {   type:Array,
+                        required: false
+                    },
+                    type:
+                    {   type:Array,
+                        required: false
 
-});
-const Community_post=mongoose.model(community_id,UserSchema);
-module.exports=Community_post;
+                    },
+                    author:
+                    {
+                        type:String,
+                        required:false
+                    },
+                    post_id:
+                    {
+                        type:String,
+                        required:false
+                    },
+                    
+                    date:{
+                        type: Date,
+                        default: Date.now
+                    } 
+                 },
+                 { collection: name});
+            return mongoose.model(name,UserSchema);
+}
+
+module.exports=fn;

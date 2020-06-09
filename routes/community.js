@@ -20,7 +20,59 @@ router.get('/create',ensureAuthenticated,function(req,res){
     {
         str+=url[i];
     }
-     req.user.communities.forEach(element => {
+       
+    var MongoClient = require('mongodb').MongoClient;
+    MongoClient.connect('mongodb://localhost:27017').then(function(client)
+        {
+             var db=client.db('communer');
+             var collection=db.collection("communities");
+             return collection.findOne({community_id:str}).then(function(community){
+                if(community.access=='private')
+                {
+                    const Notif=require('../models/Notif')(community.author);
+                    const newNotif = new Notif({
+                    description:"A user wants to join your group",
+                    userid:req.user.userid,
+                    community_id:str
+                    });
+                     newNotif.save();
+             var db=client.db('communer');
+             var collection=db.collection("users");
+             collection.update(
+                { 'userid':req.user.userid },
+                {
+                    $push: {
+                        pending_req: str
+                         
+                    }
+                }
+            );
+            var db=client.db('communer');
+             var collection=db.collection("users");
+             var desc=req.user.userid+" wants to join your "+str+" group";
+             collection.update(
+                { 'userid':community.author},
+                {
+                    $push: {
+                        notifs: {
+                            description:desc,
+                            userid:req.user.userid,
+                            community_id:str,
+                            date: new Date(Date.now()) 
+                        }
+                         
+                    }
+                }
+            ).then(function(){
+                var mongoose=require('mongoose')
+                mongoose.connect('mongodb://localhost/communer').then(function(client){
+                res.redirect('/community/'+str);
+               });
+            })
+                }
+                else
+                {
+                   req.user.communities.forEach(element => {
           if(element==str) {res.redirect('/community/'+str);}
           else{
               req.user.communities.push(str);
@@ -41,20 +93,68 @@ router.get('/create',ensureAuthenticated,function(req,res){
                 ).then(function(){
                     var db=client.db('communer');
                     var collection=db.collection("users");  
-                    collection.update( { 'userid':req.user.userid },
+                    return collection.update( { 'userid':req.user.userid },
                     {
                         $push: {
                             communities: str
                         }
                         
                     });
+                   }).then(function(){
+                    var mongoose=require('mongoose')
+                    mongoose.connect('mongodb://localhost/communer').then(function(client){
                     res.redirect('/community/'+str);
-
-                });
+                   });
+                })
             
             });
           }
-        });
+        });  
+                }
+                
+             })
+            })
+                // var db=client.db('communer_notif');
+    //             var collection=db.collection(community.author);
+                
+    //          })
+    //         })
+             
+    //  req.user.communities.forEach(element => {
+    //       if(element==str) {res.redirect('/community/'+str);}
+    //       else{
+    //           req.user.communities.push(str);
+    //           var MongoClient = require('mongodb').MongoClient;
+    //           MongoClient.connect('mongodb://localhost:27017').then(function(client)
+    //           {
+                  
+    //               var db=client.db('communer');
+    //               var collection=db.collection("communities");  
+    //               return collection.update(
+    //                 { 'community_id':str },
+    //                 {
+    //                     $push: {
+    //                         members: req.user.userid
+    //                     }
+                        
+    //                 }
+    //             ).then(function(){
+    //                 var db=client.db('communer');
+    //                 var collection=db.collection("users");  
+    //                 collection.update( { 'userid':req.user.userid },
+    //                 {
+    //                     $push: {
+    //                         communities: str
+    //                     }
+                        
+    //                 });
+    //                 res.redirect('/community/'+str);
+
+    //             });
+            
+    //         });
+    //       }
+    //     });
     });
    
     //Post for Creating Community
@@ -79,7 +179,8 @@ router.get('/create',ensureAuthenticated,function(req,res){
                 name,
                 access,
                 community_id,
-                author: req.user.userid
+                author: req.user.userid,
+                members: [req.user.userid]
               });
         
               
@@ -101,69 +202,32 @@ router.get('/create',ensureAuthenticated,function(req,res){
                   }
               )
               }); 
-
-                const mongoose=require('mongoose');
-                mongoose.connect('mongodb://localhost/community_posts');
-                const UserSchema=new mongoose.Schema({
-                    story:
-                    {   type:String,
-                        required: false
-                    },
-                    files:
-                    {   type:Array,
-                        required: false
-                    },
-                    type:
-                    {   type:Array,
-                        required: false
-
-                    },
-                    author:
-                    {
-                        type:String,
-                        required:false
-                    },
-                    post_id:
-                    {
-                        type:String,
-                        required:false
-                    },
-                    
-                    date:{
-                        type: Date,
-                        default: Date.now
-                    } 
-                 },
-                 { collection: community_id });
-
-                 
-                const Community_post=mongoose.model(community_id,UserSchema);
-
+              const mongoose=require('mongoose');
+              mongoose.connect('mongodb://localhost/community_posts');
+            var Community_post_Model=require('../models/Community_post')(community_id);
                 
-                const newCommunity_post = new Community_post({
+                    const newCommunity_post = new Community_post_Model({
                     story:"Welcome to the community",
                     author:"communer",
-                    date:Date.now()
+                    date:Date.now(),
+                    files:["communer.png"],
+                    type:["image/png"]
                 });
                 newCommunity_post.save().then(user=>{
-                    mongoose.connect('mongodb://localhost/communer');
-                    req.flash(
-                        'success_msg',
-                        'Community Created Succesfully'
-                      );
-                    res.redirect('/community/'+community_id);
+                    
+                    var mongoose=require('mongoose')
+                    mongoose.connect('mongodb://localhost/communer').then(function(client){
+                        req.flash(
+                            'success_msg',
+                            'Community Created Succesfully'
+                          );
+                        res.redirect('/community/'+community_id);
+                    });
+                    
                 })
-                
-
-
-
-
-                
-        
               }).catch(err => console.log(err));
         }
     
-   
 });
     });
 

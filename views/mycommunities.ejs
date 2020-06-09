@@ -6,13 +6,22 @@
 
 <div class="container-fluid">
     <div class="jumbotron">
+        <div class="row mt-5">
+            <div class="col-md-6 m-auto">
+        <h3 class="text-dark m-auto">
+            My Communities
+        </h3>
+        </div>
+        </div>
         <% user.communities.forEach(element => { %>
             <div class="row mt-5">
                 <div class="col-md-5 m-auto">  
                     <% var url='/community/'+element %> 
-                  <a href=<%=url%>>
+                    <h4>
+                  <a href=<%=url%> class='text-secondary'>
                     <%=element%>
                     </a>
+                </h4>
                 </div>
             </div>
        <% }); %>

@@ -1,35 +1,63 @@
+<html>
 <head>
     <title></title>
 </head>
+<body >
 
 <%- include('partials/navbar'); %>
+
 <div class="jumbotron ">
-    
+
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-1 m-auto  position-fixed" id="sticky-sidebar">
-               <p>
-                   Enna yaaralum edhuvum panna mudiyadhu
-               </p>
-            </div>
+            <!-- <div class="col-2 hidden-sm d-none d-sm-block bg-dark text-white position-fixed mt-5" id="sticky-sidebar">
+             
+                <div class="row-6 pt-4 hidden-sm">
+                    <div class="col">
+                        <h3> </h3> 
+                        <br>
+                        <h5>Author: </h5>
+                        <br>
+                     
+                    </div>
+                </div>
+              
+               
+            </div> -->
+           
             <div class="col" id="main">
+
+
                 <div class="row mt-5">
-                    <div class="col-md-5 m-auto">
+                    <div class="col-md-6 m-auto p-3 bg-dark text-white">
+                        
+                       <h3 class="d-inline ml-2"><%= community.community_id %> </h3> 
+                        <h6 class="d-inline ml-2">by <%= community.author %> </h6>
                         <div class="float-right">
-                        <%var path='/community/'+'join/'+community.community_id%>
-                        <a class="btn btn-primary btn-block" href= <%=path%> >
-                            Join Community
-                        </a>         
+                            <%var path='/community/'+'join/'+community.community_id%>
+                            <a id="submitbutton" onclick="document.getElementById('submitbutton').disabled = true;" class="btn btn-light btn-block" href= <%=path%> >
+                                Join Community
+                            </a>         
+                        
+                           
+                                
                     </div>  
                     </div>
                 </div>
+
+
                 <%- include('partials/posts'); %>
+
+                
+                
             </div>
+            
+            
            
         </div>
     </div>
  
     </div>
-      
-                   
+   
 
+</html>

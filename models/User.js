@@ -1,4 +1,5 @@
 const mongoose=require('mongoose');
+mongoose.connect('mongodb://localhost/communer');
 const UserSchema=new mongoose.Schema({
     name:
     {   type:String,
@@ -19,6 +20,14 @@ const UserSchema=new mongoose.Schema({
     communities:{
         type:Array,
         required:true
+    },
+    pending_req:{
+        type:Array,
+        required:false
+    },
+    notifs:{
+        type:Array,
+        required:false
     }
 
 

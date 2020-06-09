@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 // Load User model
 const User = require('../models/User');
+
 const  communities=["communer"];
 
 
@@ -85,7 +86,30 @@ router.post('/', (req, res) => {
                     'success_msg',
                     'Registered succesfully'
                   );
-                  res.redirect('/login');
+                   const Homepost=require('../models/Home')(userid);
+                    const newHomepost = new Homepost({
+                      story:"Welcome to the Communer",
+                      author:"communer",
+                      date:Date.now(),
+                      files:["communer.png"],
+                      type:["image/png"],
+                      community_id:"communer"
+                  });
+                  newHomepost.save().then(user=>{
+
+                  //   const Notif=require('../models/Notif')(userid);
+                  //   const newNotif = new Notif({
+                  //   description:"Welcome to the Communer. You can view all your notifications here"
+                  // });
+                  // newNotif.save()
+                  var mongoose=require('mongoose')
+                  mongoose.connect('mongodb://localhost/communer').then(function(client){
+                  
+                    res.redirect('/login');
+                  });
+                  
+                  });
+                  
                 })
                 .catch(err => console.log(err));
             });

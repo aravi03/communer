@@ -28,7 +28,8 @@ const view_community=function(req,res,next){
         return collection.find().sort({"date": -1}).toArray();
     }).then(function(items){
             var isauthor=false;
-            
+            var access=res.locals.community.access;
+           
             if(req.isAuthenticated()){
                 console.log("I'm logged in");
                 //req.isAuthenticated() will return true if user is logged in
@@ -37,24 +38,60 @@ const view_community=function(req,res,next){
                     if(element==str){
                         isauthor=true;
                     }});
+                    
                         if(isauthor)   {   
                             console.log("I'm the author");
-                            return res.render('community_post_author',{community:res.locals.community,posts:items,user:req.user});
+                            return res.render('community_post_author',{community:res.locals.community,posts:items,user:req.user,acess:'true'});
                         }
                         console.log("I'm just the user");
+                        if(access=='public')
                         return res.render('community_post_user',{community:res.locals.community,posts:items,user:req.user});
-                
+                        else{
+                            if(req.user.pending_req.includes(str))
+                            {
+                                return res.render('private_user_pend',{community:res.locals.community,user:req.user});
+
+                            }
+                            else{
+                                return res.render('private_user',{community:res.locals.community,user:req.user});
+
+                            }
+                        }
             }
             else{
                 console.log("I'm just a guest");
+                if(access=='public')
                 return res.render('community_post_guest',{community:res.locals.community,posts:items});
-                
+                else
+                return res.render('private_guest',{community:res.locals.community});
+
             }
         }).catch(function(err){
             console.log(err);
 
         });
 }
+
+
+
+router.get('/communer',function(req,res){
+    var MongoClient = require('mongodb').MongoClient;
+     MongoClient.connect('mongodb://localhost:27017').then(function(client)
+    {  var db=client.db('community_posts');
+        var collection=db.collection('communer');
+        
+        return collection.find().sort({"date": -1}).toArray();
+    }).then(function(items){
+        if(req.isAuthenticated())
+        res.render('communer_user',{posts:items,user:req.user})
+        else
+        res.render('communer_guest',{posts:items})
+    });
+
+    
+});
+
+
 
 router.get('*',communityURL,view_community);
 router.post('*',ensureAuthenticated,function(req,res){
@@ -128,15 +165,56 @@ router.post('*',ensureAuthenticated,function(req,res){
                             }
                         }
                     );
+                }
+            });
+          }
+        //   else {
+        //     res.redirect('/community/'+str);
+        //   }
 
-                    res.redirect('/community/'+str);
-                  }
-                });
-              }
-              else {
-                res.redirect('/community/'+str);
-              }
+        var MongoClient = require('mongodb').MongoClient;
+        MongoClient.connect('mongodb://localhost:27017', function (err, client) {
+                if (err) throw err;
+              
+                var db = client.db('communer');
+                db.collection('communities').findOne({ community_id: str })
+            .then(community => {
+                community.members.forEach(function(item){
+                    console.log("Hey these are the members "+item);
+                var MongoClient = require('mongodb').MongoClient;
+                MongoClient.connect('mongodb://localhost:27017', function (err, client) {
+                if (err) throw err;
+                var db = client.db('communer_home'); 
+                console.log("Hey its found man");
+                if(isfile){
+                    db.collection(item).insertOne({
+                        story: story,
+                        author:author,
+                        date: new Date(Date.now()),
+                        files: [str+'_'+docInserted.ops[0]._id+ext],
+                        type: [type],
+                        community_id:str
+                    })
+                }
+                else{
+                    db.collection(item).insertOne({
+                        story: story,
+                        author:author,
+                        date: new Date(Date.now()),
+                        community_id:str
+                    })  
+                }
+                
+                })
 
+            })
+            
+        });})
+
+
+                   
+                  
+        res.redirect('/community/'+str);
             
         });
 

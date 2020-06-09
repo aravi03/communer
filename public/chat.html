@@ -1,0 +1,133 @@
+<head>
+    <link rel="stylesheet" href="chat_style.css">
+  
+</head>
+<body style="background-color:#e9ecef;">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="homebar">
+    
+    <a class="navbar-brand mb-1" href="/">Communer</a>  
+   
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+ <span class="navbar-toggler-icon"></span>
+</button>
+
+
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-5 ">
+
+               
+                <li class="nav-item dropdown mx-2 my-1">
+                    <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a id="nav_name" class="dropdown-header"></a>
+                        <a class="dropdown-item" href="/mycommunities">My Communities</a>
+                        <a class="dropdown-item" href="/community/create">Create Community</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/help">Help</a>
+                        <a class="dropdown-item" href="/login/logout">Logout</a>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown my-1">
+                    <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown">
+                        <i class="fa fa-bell"></i>
+                    </a>
+                    <div class="dropdown-menu ">
+                        
+                            <a id="nav_notifs" class="dropdown-item" href="/notifs">
+                               
+                            </a>
+                          
+                           
+                   </div>
+                    
+                </li>
+
+
+                <li class="nav-item dropdown mr-2">
+                   <div id="nav_notifscount" class="mt-2 text-white">
+                       
+                    </div>  
+                </li>
+
+                
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="/chat">
+                    <i class="fa fa-comments" style="font-size:25px;"></i>
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link mx-3" href="/searchcommunities">
+                        <i class="fa fa-search" style="font-size:20px;"></i>
+                        </a>
+                    
+                </li>
+         </ul>
+    </div>
+    
+
+</nav> 
+<br><br><br>
+
+
+
+
+
+
+
+
+   
+    <div class="chat-container">
+        <header class="chat-header">
+         
+            <h2 id='room_head' class="myroom px-5">Communer Chat Room</h2>
+          
+           
+          </header>
+        <main class="chat-main">
+            <div class="chat-sidebar">
+             <!-- <h3 id='room_head'></h3> -->
+              <ul id="room-name"></ul>
+              
+            </div>
+            <div class="chat-messages">
+              Welcome to Communer's Community Chat. Click on any of the communities to start chating...
+            </div>
+          </main>
+    <div class="chat-form-container">
+        <form id="chat-form">
+          <input
+            id="msg"
+            type="text"
+            placeholder="Enter Message"
+            required
+            autocomplete="off"
+          />
+          <button id="btn" class="btn btn-light"><i class="fa fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat_client.js"></script>
+   <script>
+       console.log("Hello")
+   </script>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>

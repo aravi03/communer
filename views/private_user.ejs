@@ -1,0 +1,50 @@
+<head>
+    <title></title>
+</head>
+
+<%- include('partials/navbar'); %>
+<div class="jumbotron ">
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1 m-auto  position-fixed" id="sticky-sidebar">
+               <p>
+                   Enna yaaralum edhuvum panna mudiyadhu
+               </p>
+            </div>
+            <div class="col" id="main">
+                <div class="row mt-5">
+                    <div class="col-md-6 m-auto p-3 bg-dark text-white">
+                        
+                       <h3 class="d-inline ml-2"><%= community.community_id %> </h3> 
+                        <h6 class="d-inline ml-2">by <%= community.author %> </h6>
+                        <div class="float-right">
+                            <%var path='/community/'+'join/'+community.community_id%>
+                            <a id="submitbutton" onclick="document.getElementById('submitbutton').disabled = true;" class="btn btn-light btn-block" href= <%=path%> >
+                                Join Community
+                            </a>         
+                        
+                           
+                                
+                    </div>  
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <div class="d-flex justify-content-center" style="font-size:20px;">
+                    <i class="fa fa-lock" style="font-size:40px; color: gray;"></i> 
+                   
+                &ensp;&ensp;
+                This is a private page. Become a member of the page to view its contents.
+            </div>
+            </div>
+           
+        </div>
+    </div>
+ 
+    </div>
+      
+                   
+
