@@ -29,6 +29,9 @@
 <p ><img src="screenshots/notif2.png" alt="Logo" width="420">&emsp;&emsp;<img src="screenshots/mycom.png" alt="Logo" width="420"></p>
 <br>
  
+- Uers can also like and comment on their favourite post
+<p ><img src="screenshots/notif2.png" alt="Logo" width="420">&emsp;&emsp;<img src="screenshots/likecomment.png" alt="Logo" width="420"></p>
+<br> 
 
 Tools used:
 -----------
