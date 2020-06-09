@@ -28,14 +28,9 @@
 - The navbar has notifications where users can get notifications and links to mycommunities, logout and help.
 <p ><img src="screenshots/notif2.png" alt="Logo" width="420"></p>
 <p ><img src="screenshots/mycom.png" alt="Logo" width="420"></p>
-
+<br>
  
 
-
-Key Features:
--------------
-While the text part of the post is stored in the database, the image and video files are uploaded to the server using a unique name which is then stored to the database and retrived later when the post is to be viewed.
- 
 Tools used:
 -----------
 This project uses Node.js and express for backend and MongoDB as the database to store the information.
