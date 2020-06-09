@@ -26,8 +26,7 @@
 <br>
 
 - The navbar has notifications where users can get notifications and links to mycommunities, logout and help.
-<p ><img src="screenshots/notif2.png" alt="Logo" width="420"></p>
-<p ><img src="screenshots/mycom.png" alt="Logo" width="420"></p>
+<p ><img src="screenshots/notif2.png" alt="Logo" width="420"><img src="screenshots/mycom.png" alt="Logo" width="420"></p>
 <br>
  
 
