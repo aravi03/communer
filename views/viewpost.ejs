@@ -13,7 +13,8 @@
 
             <div class="d-flex flex-row bg-dark text-white">
                 <div class="col">
-                    <%=item.author%>
+                    <% var path='/community/'+community.community_id %> 
+                    <a class="text-white" href=""><%=item.author%></a> &nbsp; <i class="fa fa-caret-right"></i> &nbsp; <a class="text-white" href=<%=path%> ><%=community.community_id%></a>
                 </div>
                 <div class="float-right">
                 <%date= new Date(item.date) 
