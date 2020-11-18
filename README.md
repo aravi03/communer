@@ -1,7 +1,14 @@
 # Communer
 <p align="center"><img src="public/communer.png" alt="Logo" height="300"></p>
  
-- Communer is a full fledged community based social networking web app. You can become a member of the platform by registering. Once you register you will be able to login to your account.
+Communer is a full fledged community based social networking web app. You can become a member of the platform by registering. Once you register you will be able to login to your account.<br>
+
+Tools used:
+-----------
+This project uses Node.js and express for backend and MongoDB as the database to store the information.<br>
+
+Screenshots:
+-----------
 <p><img src="screenshots/register.png" alt="Logo" width="420">&emsp;&emsp;<img src="screenshots/login.png" alt="Logo" width="420"></p>
 <br>
 
@@ -33,6 +40,4 @@
 <p ><img src="screenshots/likecomment.png" alt="Logo" height="300" width="auto"></p>
 <br> 
 
-Tools used:
------------
-This project uses Node.js and express for backend and MongoDB as the database to store the information.
+
